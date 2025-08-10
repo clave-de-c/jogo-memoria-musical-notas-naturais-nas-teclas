@@ -1,0 +1,247 @@
+/* style.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-family: 'Fredoka One', cursive;
+    color: #4a90e2;
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    color: #557;
+    margin-top: 5px;
+}
+
+.game-board {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 800px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.card {
+    width: 120px;
+    height: 120px;
+    background-color: transparent;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+}
+
+.card-front {
+    background-color: #4a90e2;
+    color: white;
+    font-size: 3.5em;
+}
+
+.card-back {
+    background-color: #ffffff;
+    color: #333;
+    transform: rotateY(180deg);
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    gap: 8px; 
+    font-size: 2em;
+}
+
+.keyboard {
+    width: 95%;
+    height: 40%;
+    display: flex;
+    border: 2px solid #999;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.key.white {
+    flex: 1;
+    height: 100%;
+    background-color: white;
+    border-right: 1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.key.white[data-has-black-key="true"]::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -13%;
+    width: 26%;
+    height: 60%;
+    background: #222;
+    border-radius: 0 0 3px 3px;
+    z-index: 2;
+    border: 1px solid #555;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+}
+
+.key.highlight {
+    background-image: linear-gradient(to bottom, #63d6ff, #34c1f0);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+.game-info {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.game-btn {
+    padding: 12px 24px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: white;
+}
+
+.ranking-btn { background-color: #5bc0de; }
+.ranking-btn:hover { background-color: #31b0d5; }
+.restart-btn { background-color: #ff8c00; }
+.restart-btn:hover { background-color: #e07b00; }
+
+.modal-screen {
+    position: fixed; z-index: 100; left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex; align-items: center; justify-content: center;
+    visibility: hidden; opacity: 0;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.modal-screen.show { visibility: visible; opacity: 1; }
+
+.modal-content {
+    background-color: white; padding: 30px; border-radius: 15px;
+    width: 90%; max-width: 500px; position: relative;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.close-btn {
+    position: absolute; top: 10px; right: 20px; color: #aaa;
+    font-size: 28px; font-weight: bold; cursor: pointer;
+}
+.close-btn:hover { color: #333; }
+
+.win-content input {
+    display: block; width: 80%; margin: 15px auto; padding: 10px;
+    border: 2px solid #ddd; border-radius: 8px;
+    font-size: 1em; text-align: center;
+}
+
+#save-score-btn {
+    padding: 15px 30px; font-size: 1.2em; font-weight: 600;
+    border-radius: 10px; background-color: #28a745;
+    color: white; border: none; cursor: pointer;
+}
+
+.game-stats {
+    display: flex; justify-content: space-around; width: 100%;
+    max-width: 400px; background-color: #ffffff;
+    padding: 10px; border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.stat-item { text-align: center; }
+.stat-item h3 { margin: 0; font-size: 1em; color: #555; }
+.stat-item p { margin: 0; font-family: 'Fredoka One', cursive; font-size: 1.8em; color: #4a90e2; }
+
+#leaderboard-list {
+    list-style: none; padding: 0; max-height: 50vh; overflow-y: auto;
+}
+#leaderboard-list li {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px; border-radius: 8px; font-size: 1.1em;
+}
+#leaderboard-list li:nth-child(odd) { background-color: #f0f8ff; }
+#leaderboard-list li .player { font-weight: 600; }
+
+.score-details { display: flex; align-items: center; gap: 15px; text-align: right; }
+.score-details .time { font-family: 'Fredoka One', cursive; color: #4a90e2; }
+.score-details .moves {
+    font-size: 0.9em; color: #555; font-family: 'Poppins', sans-serif;
+    background-color: #e9ecef; padding: 2px 6px; border-radius: 4px;
+}
+
+/* ATUALIZADO: Estilo para o rodapé */
+footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #777;
+}
+
+footer p {
+    margin: 0;
+}
+
+.footer-links {
+    margin-top: 5px;
+}
+
+.footer-links a {
+    color: #4a90e2;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}

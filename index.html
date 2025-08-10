@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória Musical</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>Jogo da Memória Musical</h1>
+        <p class="subtitle">Notas Naturais nas Teclas</p>
+    </header>
+
+    <div class="game-stats">
+        <div class="stat-item">
+            <h3>Tempo</h3>
+            <p id="timer">00:00</p>
+        </div>
+        <div class="stat-item">
+            <h3>Jogadas</h3>
+            <p id="moves-count">0</p>
+        </div>
+    </div>
+
+    <div id="game-board" class="game-board"></div>
+
+    <div class="game-info">
+        <button id="show-leaderboard-btn" class="game-btn ranking-btn">🏆 Ranking</button>
+        <button id="restart-btn" class="game-btn restart-btn">Reiniciar</button>
+    </div>
+    
+    <div id="win-screen" class="modal-screen">
+        <div class="modal-content">
+            <h2>Parabéns!</h2>
+            <p>Seu tempo foi de <strong id="final-time"></strong>!</p>
+            <p>Digite seu nome ou apelido para salvar no ranking:</p>
+            <input type="text" id="player-name" placeholder="Seu nome aqui" maxlength="15">
+            <button id="save-score-btn">Salvar Pontuação</button>
+        </div>
+    </div>
+
+    <div id="leaderboard-modal" class="modal-screen">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>🏆 Ranking - Melhores Tempos</h2>
+            <ol id="leaderboard-list">
+                </ol>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <footer>
+        <p>Desenvolvido por <strong>Clave de C</strong></p>
+        <div class="footer-links">
+            <a href="https://www.clavedec.com.br" target="_blank">www.clavedec.com.br</a>
+            <span>|</span>
+            <a href="https://www.instagram.com/clavedec.oficial" target="_blank">@clavedec.oficial</a>
+        </div>
+    </footer>
+
+</body>
+</html>
